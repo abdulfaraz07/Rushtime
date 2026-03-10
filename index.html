@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RushTime - Coming Soon</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(270deg,#020024,#090979,#000428);
+background-size:400% 400%;
+animation:bgmove 12s ease infinite;
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+@keyframes bgmove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{
+z-index:2;
+animation:fade 2s ease;
+}
+
+@keyframes fade{
+from{opacity:0; transform:translateY(30px);} 
+to{opacity:1; transform:translateY(0);} 
+}
+
+.logo{
+width:180px;
+margin-bottom:20px;
+}
+
+h1{
+font-size:42px;
+margin:10px;
+}
+
+.tagline{
+font-size:20px;
+margin-bottom:25px;
+opacity:0.9;
+}
+
+.countdown{
+font-size:28px;
+margin-bottom:30px;
+}
+
+input{
+padding:12px;
+width:220px;
+border:none;
+border-radius:6px;
+}
+
+button{
+padding:12px 18px;
+border:none;
+background:#ff7a00;
+color:white;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#ff5500;
+}
+
+.footer{
+position:absolute;
+bottom:20px;
+font-size:14px;
+opacity:0.8;
+}
+
+/* floating food icons */
+
+.food{
+position:absolute;
+font-size:40px;
+animation:float 10s linear infinite;
+opacity:0.6;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);} 
+100%{transform:translateY(-100vh);} 
+}
+
+.food:nth-child(1){left:10%; animation-duration:12s;}
+.food:nth-child(2){left:25%; animation-duration:9s;}
+.food:nth-child(3){left:40%; animation-duration:11s;}
+.food:nth-child(4){left:60%; animation-duration:8s;}
+.food:nth-child(5){left:75%; animation-duration:10s;}
+.food:nth-child(6){left:90%; animation-duration:13s;}
+
+</style>
+</head>
+
+<body>
+
+<!-- Floating food -->
+<div class="food">🍔</div>
+<div class="food">🥤</div>
+<div class="food">🥪</div>
+<div class="food">🍹</div>
+<div class="food">🍔</div>
+<div class="food">🥤</div>
+
+<div class="container">
+
+<img src="rushtime.png" class="logo">
+
+<h1>RushTime</h1>
+
+<div class="tagline">
+It's Always a Good Time
+</div>
+
+<div class="countdown" id="timer">
+Launching Soon
+</div>
+
+<div>
+<input type="email" placeholder="Enter your email">
+<button>Notify Me</button>
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 RushTime
+</div>
+
+<script>
+
+var launchDate = new Date("Jan 1, 2027 00:00:00").getTime();
+
+var x = setInterval(function(){
+
+var now = new Date().getTime();
+var distance = launchDate - now;
+
+var days = Math.floor(distance/(1000*60*60*24));
+var hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+var minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+var seconds = Math.floor((distance%(1000*60))/1000);
+
+document.getElementById("timer").innerHTML =
+days+"d "+hours+"h "+minutes+"m "+seconds+"s ";
+
+if(distance < 0){
+clearInterval(x);
+document.getElementById("timer").innerHTML="We Are Live!";
+}
+
+},1000);
+
+</script>
+
+</body>
+</html>
